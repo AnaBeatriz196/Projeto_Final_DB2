@@ -1,0 +1,49 @@
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+*.env
+.venv/
+
+# Flask-related
+instance/
+*.db
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Pytest / coverage
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.cache
+
+# Logs
+*.log
+
+# MyPy
+.mypy_cache/
+
+# Mac OS
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python egg
+*.egg-info/
+*.egg
+dist/
+build/
+
+# PyInstaller
+*.manifest
+*.spec
