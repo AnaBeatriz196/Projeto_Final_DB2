@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Gerar Relatórios - IFome{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Gerar Relatórios</h2>
+
+<form method="POST" action="{{ url_for('report.gerar_relatorio') }}">
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="inicio" class="form-label">Data de Início</label>
+            <input type="date" class="form-control" name="inicio" required>
+        </div>
+        <div class="col-md-4">
+            <label for="fim" class="form-label">Data de Fim</label>
+            <input type="date" class="form-control" name="fim" required>
+        </div>
+        <div class="col-md-4">
+            <label for="formato" class="form-label">Formato</label>
+            <select class="form-select" name="formato" required>
+                <option value="pdf">PDF</option>
+                <option value="xlsx">Excel (.xlsx)</option>
+                <option value="csv">CSV</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Gerar Relatório</button>
+</form>
+{% endblock %}

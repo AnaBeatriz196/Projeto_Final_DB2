@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel do Aluno - IFome{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Painel do Aluno</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Inscrição</h5>
+                <p class="card-text">Inscreva-se para a refeição do dia.</p>
+                <a href="{{ url_for('student.inscrever') }}" class="btn btn-light">Fazer inscrição</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-secondary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Histórico</h5>
+                <p class="card-text">Consulte suas inscrições anteriores.</p>
+                <a href="{{ url_for('student.historico') }}" class="btn btn-light">Ver histórico</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-danger mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Faltas</h5>
+                <p class="card-text">Verifique suas faltas acumuladas.</p>
+                <a href="{{ url_for('student.ver_faltas') }}" class="btn btn-light">Ver faltas</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Painel do Administrador - IFome{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Painel do Administrador</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Refeições</h5>
+                <p class="card-text">Cadastrar ou visualizar refeições diárias.</p>
+                <a href="{{ url_for('admin.gerenciar_refeicoes') }}" class="btn btn-light">Gerenciar</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Alunos</h5>
+                <p class="card-text">Visualizar lista de alunos inscritos.</p>
+                <a href="{{ url_for('admin.listar_alunos') }}" class="btn btn-light">Ver alunos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Relatórios</h5>
+                <p class="card-text">Gerar e exportar relatórios de uso.</p>
+                <a href="{{ url_for('report.relatorios') }}" class="btn btn-light">Gerar relatórios</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

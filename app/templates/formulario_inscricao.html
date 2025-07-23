@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Inscrição na Refeição - IFome{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Inscrição na Refeição do Dia</h2>
+
+{% if refeicao %}
+    <div class="alert alert-info">
+        <strong>Data:</strong> {{ refeicao.data.strftime('%d/%m/%Y') }}<br>
+        <strong>Vagas disponíveis:</strong> {{ refeicao.quantidade_vagas }}
+    </div>
+
+    <form method="POST" action="{{ url_for('student.inscrever') }}">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+            {{ form.horario_inscricao.label(class="form-label") }}
+            {{ form.horario_inscricao(class="form-control", readonly=true) }}
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Confirmar Inscrição</button>
+    </form>
+{% else %}
+    <div class="alert alert-warning">
+        Nenhuma refeição disponível para hoje.
+    </div>
+{% endif %}
+{% endblock %}
