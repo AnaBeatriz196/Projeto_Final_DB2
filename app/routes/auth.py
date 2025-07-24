@@ -5,12 +5,19 @@ from app.forms.registro_form import RegistroForm
 from app.models.user import User
 from app import db
 
-auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth_bp = Blueprint('auth', __name__)  # agora rotas ficam em /auth/login etc.
 
-@auth_bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/', methods=['GET', 'POST'])  # era '/', agora é '/login'
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('main.dashboard'))
+        # Redireciona de acordo com o tipo de usuário
+        if current_user.tipo == 'admin':
+            return redirect(url_for('admin.painel'))
+        elif current_user.tipo == 'aluno':
+            return redirect(url_for('student.dashboard_aluno'))  # ou a rota correta do aluno
+        else:
+            flash('Tipo de usuário desconhecido.', 'warning')
+            return redirect(url_for('auth.login'))
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -18,10 +25,18 @@ def login():
         if user and user.check_password(form.senha.data):
             login_user(user, remember=form.lembrar.data)
             flash('Login realizado com sucesso!', 'success')
-            return redirect(url_for('main.dashboard'))
+
+            # Redireciona após login com base no tipo
+            if user.tipo == 'admin':
+                return redirect(url_for('admin.painel'))
+            elif user.tipo == 'aluno':
+                return redirect(url_for('student.dashboard_aluno'))
+            else:
+                return redirect(url_for('auth.login'))
         else:
             flash('Credenciais inválidas.', 'danger')
-    return render_template('login.html', form=form)
+
+    return render_template('auth/login.html', form=form)
 
 @auth_bp.route('/logout')
 @login_required
@@ -40,4 +55,4 @@ def registro():
         db.session.commit()
         flash('Conta criada com sucesso! Faça login.', 'success')
         return redirect(url_for('auth.login'))
-    return render_template('registro.html', form=form)
+    return render_template('auth/registro.html', form=form)
