@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, send_file, flash
 from flask_login import login_required, current_user
-from app.models.inscricao import Inscricao
-from app.utils.exportador import gerar_csv, gerar_pdf, gerar_xlsx
+from app.models.form import Inscricao
+from app.utils.exportador import gerar_csv, gerar_xlsx
 from io import BytesIO
 from datetime import datetime
 
@@ -44,10 +44,10 @@ def gerar_relatorio():
         file_data = gerar_xlsx(inscricoes)
         filename = f"relatorio_{inicio}_a_{fim}.xlsx"
         mimetype = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    elif formato == 'pdf':
-        file_data = gerar_pdf(inscricoes)
-        filename = f"relatorio_{inicio}_a_{fim}.pdf"
-        mimetype = 'application/pdf'
+    # elif formato == 'pdf':
+    #     file_data = gerar_pdf(inscricoes)
+    #     filename = f"relatorio_{inicio}_a_{fim}.pdf"
+    #     mimetype = 'application/pdf'
     else:
         flash('Formato não suportado.', 'danger')
         return render_template('relatorios/index.html')

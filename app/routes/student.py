@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.forms.inscricao_form import InscricaoForm
-from app.models.refeicao import Refeicao
-from app.models.inscricao import Inscricao
+from app.models.meal import Refeicao
+from app.models.form import Inscricao
 from app import db
 from datetime import date
 

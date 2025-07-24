@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app.forms.refeicao_form import RefeicaoForm
-from app.models.refeicao import Refeicao
+from app.models.meal import Refeicao
 from app.models.user import User
 from app import db
 
