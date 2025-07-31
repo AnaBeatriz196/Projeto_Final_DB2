@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - IFome{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="text-center mb-4">Entrar no IFome</h2>
+        <form method="POST" action="{{ url_for('auth.login') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                {{ form.email(class="form-control", placeholder="Seu e-mail") }}
+                {% for error in form.email.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="mb-3">
+                {{ form.senha.label(class="form-label") }}
+                {{ form.senha(class="form-control", placeholder="Sua senha") }}
+                {% for error in form.senha.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="form-check mb-3">
+                {{ form.lembrar(class="form-check-input") }}
+                {{ form.lembrar.label(class="form-check-label") }}
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Entrar</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <small>Não tem uma conta? <a href="{{ url_for('auth.registro') }}">Registrar-se</a></small>
+        </div>
+    </div>
+</div>
+{% endblock %}
