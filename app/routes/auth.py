@@ -5,7 +5,7 @@ from app.forms.registro_form import RegistroForm
 from app.models.user import User
 from app import db
 
-auth_bp = Blueprint('auth', __name__)  # agora rotas ficam em /auth/login etc.
+auth_bp = Blueprint('auth', __name__, template_folder='templates')  # agora rotas ficam em /auth/login etc.
 
 @auth_bp.route('/', methods=['GET', 'POST'])  # era '/', agora é '/login'
 def login():
@@ -37,6 +37,7 @@ def login():
             flash('Credenciais inválidas.', 'danger')
 
     return render_template('auth/login.html', form=form)
+
 
 @auth_bp.route('/logout')
 @login_required

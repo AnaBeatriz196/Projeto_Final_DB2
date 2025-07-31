@@ -7,15 +7,24 @@ from app.routes.student import student_bp
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from jinja2 import FileSystemLoader
+import logging
 
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 
 
+class LoggingLoader(FileSystemLoader):
+    def get_source(self, environment, template):
+        logging.info(f"Buscando template: {template} em {self.searchpath}")
+        return super().get_source(environment, template)
+
+
 
 def create_app():
     app = Flask(__name__)
+    app.jinja_loader = LoggingLoader(app.template_folder)
 
     app.config['SECRET_KEY'] = 'sua_chave_secreta'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///meubanco.db'  # ou seu banco
@@ -47,4 +56,5 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
+    logging.basicConfig(level=logging.INFO)
     app.run(debug=True)
