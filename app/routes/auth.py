@@ -56,4 +56,4 @@ def registro():
         db.session.commit()
         flash('Conta criada com sucesso! Faça login.', 'success')
         return redirect(url_for('auth.login'))
-    return render_template('auth/registro.html', form=form)
+    return render_template('auth/formulario_inscricao.html', form=form)
